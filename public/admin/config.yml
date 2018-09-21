@@ -1,0 +1,22 @@
+backend:
+  name: github
+  repo: Herohtar/thalion-herohtar
+  branch: master # Branch to update (optional; defaults to master)
+  base_url: https://us-central1-github-oauth2.cloudfunctions.net
+  auth_endpoint: /oauth/auth
+
+media_folder: "public/uploads" # Media files will be stored in the repo under public/uploads
+public_folder: "/uploads" # Folder path where uploaded files will be accessed, relative to the base of the built site
+
+display_url: https://herohtar.com
+
+collections:
+  - label: "Data"
+    name: "data"
+    files:
+      - label: "Configuration"
+        name: "siteConfig"
+        file: "src/content/SiteConfig.json"
+        fields:
+          - {label: "Site Title", name: "title", widget: string}
+          - {label: "URL", name: "url", widget: string}

@@ -1,13 +1,36 @@
 import React from 'react'
-import { Router } from 'react-static'
+import { SiteData, Router } from 'react-static'
 import Routes from 'react-static-routes'
 //
 import { withStyles } from '@material-ui/core/styles'
 import CssBaseline from '@material-ui/core/CssBaseline'
+import Grid from '@material-ui/core/Grid'
+import Paper from '@material-ui/core/Paper'
+import Typography from '@material-ui/core/Typography'
 
 const styles = theme => ({
-  appBar: {
-    zIndex: theme.zIndex.drawer + 1,
+  root: {
+    ...theme.mixins.gutters(),
+    minHeight: '100vh',
+  },
+  header: {
+    paddingTop: theme.spacing.unit * 4,
+    paddingBottom: theme.spacing.unit * 4,
+  },
+  content: {
+    padding: theme.spacing.unit * 4,
+  },
+  footer: {
+    paddingTop: theme.spacing.unit * 4,
+    paddingBottom: theme.spacing.unit * 4,
+    color: theme.palette.text.footer,
+  },
+  flexColumn: {
+    display: 'flex',
+    flexDirection: 'column',
+  },
+  flexGrow: {
+    flexGrow: 1,
   },
 })
 
@@ -24,12 +47,25 @@ class App extends React.PureComponent {
 
     return (
       <Router>
-        <div>
+        <Grid container direction="column" justify="space-between" alignItems="center" className={classes.root}>
           <CssBaseline />
-          <main>
-            <Routes />
-          </main>
-        </div>
+          <SiteData render={({title}) => (
+            <Grid item justify="center" component="header" xs="auto" className={classes.header}>
+              <Typography variant="display3">{title}</Typography>
+            </Grid>
+          )} />
+          <Grid item container justify="center" component="main" className={classes.flexGrow}>
+            <Grid item xs={12} sm={11} md={9} lg={6} className={classes.flexColumn}>
+              <Paper className={[classes.content, classes.flexGrow].join(' ')}>
+                <Routes />
+              </Paper>
+            </Grid>
+          </Grid>
+          <Grid item className={classes.footer} component="footer" xs="auto">
+            <Typography variant="caption" align="center" color="inherit">Hosted on Firebase</Typography>
+            <Typography variant="caption" align="center" color="inherit">Powered by React Static and Netlify CMS</Typography>
+          </Grid>
+        </Grid>
       </Router>
     )
   }

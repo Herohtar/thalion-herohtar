@@ -6,7 +6,6 @@ import Typography from '@material-ui/core/Typography'
 
 const styles = theme => ({
   root: {
-    padding: theme.spacing.unit * 3,
   },
 })
 
@@ -16,6 +15,6 @@ export default withStyles(styles)(({ classes }) => (
         <Head title={title} />
     )} />
     <Typography variant="display1" paragraph>Welcome!</Typography>
-    <Typography variant="body1">Basic page with nothing on it... yet.</Typography>
+    <Typography variant="body1">This site has nothing on it... yet.</Typography>
   </div>
 ))

@@ -15,6 +15,7 @@ export default withStyles(styles)(({ classes }) => (
     <SiteData render={({title}) => (
         <Head title={title} />
     )} />
+    <Typography variant="display1" paragraph>Welcome!</Typography>
     <Typography variant="body1">Basic page with nothing on it... yet.</Typography>
   </div>
 ))

@@ -3,10 +3,21 @@ import { SheetsRegistry } from 'react-jss/lib/jss'
 import JssProvider from 'react-jss/lib/JssProvider'
 import { MuiThemeProvider, createMuiTheme, createGenerateClassName } from '@material-ui/core/styles'
 
+import fs from 'fs'
+import path from 'path'
+import glob from 'glob'
+
 import * as routes from './src/constants/routes'
 import theme from './src/theme'
 
 import siteConfig from './src/content/SiteConfig.json'
+
+function getPosts() {
+  return glob.sync('./src/content/blog/*.json').map(file => ({
+    slug: path.basename(file, '.json'),
+    ...JSON.parse(fs.readFileSync(file))
+  }))
+}
 
 export default {
   siteRoot: siteConfig.url,
@@ -16,6 +27,9 @@ export default {
       {
         path: routes.Home.path,
         component: routes.Home.component,
+        getData: () => ({
+          posts: getPosts(),
+        }),
       },
       {
         is404: true,

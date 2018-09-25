@@ -50,7 +50,7 @@ class App extends React.PureComponent {
         <Grid container direction="column" justify="space-between" alignItems="center" className={classes.root}>
           <CssBaseline />
           <SiteData render={({title}) => (
-            <Grid item justify="center" component="header" xs="auto" className={classes.header}>
+            <Grid item component="header" xs="auto" className={classes.header}>
               <Typography variant="display3">{title}</Typography>
             </Grid>
           )} />

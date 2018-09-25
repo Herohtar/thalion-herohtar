@@ -20,3 +20,13 @@ collections:
         fields:
           - {label: "Site Title", name: "title", widget: string}
           - {label: "URL", name: "url", widget: string}
+  - label: "Blog"
+    name: "blog"
+    folder: "src/content/blog"
+    create: true
+    format: "json"
+    slug: "{{year}}-{{month}}-{{day}}_{{slug}}"
+    fields:
+      - {label: "Title", name: "title", widget: "string"}
+      - {label: "Publish Date", name: "date", widget: "datetime"}
+      - {label: "Body", name: "body", widget: "markdown"}

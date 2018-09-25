@@ -62,8 +62,7 @@ class App extends React.PureComponent {
             </Grid>
           </Grid>
           <Grid item className={classes.footer} component="footer" xs="auto">
-            <Typography variant="caption" align="center" color="inherit">Hosted on Firebase</Typography>
-            <Typography variant="caption" align="center" color="inherit">Powered by React Static and Netlify CMS</Typography>
+            <Typography variant="caption" align="center" color="inherit">Powered by Firebase, React Static, and Netlify CMS</Typography>
           </Grid>
         </Grid>
       </Router>

@@ -23,13 +23,21 @@ export default {
   siteRoot: siteConfig.url,
   getSiteData: () => siteConfig,
   getRoutes: async () => {
+    const posts = getPosts()
     return [
       {
         path: routes.Home.path,
         component: routes.Home.component,
         getData: () => ({
-          posts: getPosts(),
+          posts: posts,
         }),
+        children: posts.map(post => ({
+          path: `/post/${post.slug}`,
+          component: 'src/containers/Post',
+          getData: () => ({
+            post,
+          }),
+        })),
       },
       {
         is404: true,

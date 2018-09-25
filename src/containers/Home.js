@@ -24,7 +24,7 @@ export default withStyles(styles)(({ classes }) => (
     )} />
     <Typography variant="display1" paragraph>Welcome!</Typography>
     <Typography variant="body1" paragraph>This site has nothing on it... yet.</Typography>
-    <Grid container direction="column" spacing={16} justify="space-between">
+    <Grid container direction="column" spacing={16}>
       <RouteData render={({posts}) => (
         posts.map(post => (
           <Grid item xs="auto" key={post.slug}>

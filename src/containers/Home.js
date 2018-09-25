@@ -1,5 +1,5 @@
 import React from 'react'
-import { SiteData, Head, RouteData } from 'react-static'
+import { SiteData, Head, RouteData, Link } from 'react-static'
 //
 import { withStyles } from '@material-ui/core/styles'
 import Grid from '@material-ui/core/Grid'
@@ -29,7 +29,7 @@ export default withStyles(styles)(({ classes }) => (
         posts.map(post => (
           <Grid item xs="auto" key={post.slug}>
             <Paper className={classes.post}>
-              <Typography variant="headline">{post.title}</Typography>
+              <Typography variant="headline" component={Link} to={`/post/${post.slug}`}>{post.title}</Typography>
               <Typography variant="subheading" paragraph><Moment date={post.date} format="dddd, MMMM Do, YYYY" /></Typography>
               <Typography variant="body1" color="textSecondary" component={ReactMarkdown} source={post.body} paragraph />
             </Paper>

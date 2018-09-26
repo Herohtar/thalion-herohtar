@@ -16,7 +16,7 @@ function getPosts() {
   return glob.sync('./src/content/blog/*.json').map(file => ({
     slug: path.basename(file, '.json'),
     ...JSON.parse(fs.readFileSync(file))
-  }))
+  })).reverse()
 }
 
 export default {

@@ -1,5 +1,5 @@
 import React from 'react'
-import { SiteData, Router } from 'react-static'
+import { SiteData, Router, Link } from 'react-static'
 import Routes from 'react-static-routes'
 //
 import { withStyles } from '@material-ui/core/styles'
@@ -32,6 +32,9 @@ const styles = theme => ({
   flexGrow: {
     flexGrow: 1,
   },
+  link: {
+    textDecoration: 'none',
+  },
 })
 
 class App extends React.PureComponent {
@@ -51,7 +54,7 @@ class App extends React.PureComponent {
           <CssBaseline />
           <SiteData render={({title}) => (
             <Grid item component="header" xs="auto" className={classes.header}>
-              <Typography variant="display3">{title}</Typography>
+              <Typography variant="display3" component={Link} to='/' className={classes.link}>{title}</Typography>
             </Grid>
           )} />
           <Grid item container justify="center" component="main" className={classes.flexGrow}>

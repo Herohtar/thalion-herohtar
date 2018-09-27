@@ -15,6 +15,9 @@ const styles = theme => ({
     background: '#5a5a5a',
     padding: theme.spacing.unit * 2,
   },
+  link: {
+    textDecoration: 'none',
+  },
 })
 
 export default withStyles(styles)(({ classes }) => (
@@ -29,7 +32,7 @@ export default withStyles(styles)(({ classes }) => (
         posts.map(post => (
           <Grid item xs="auto" key={post.slug}>
             <Paper className={classes.post}>
-              <Typography variant="headline" component={Link} to={`/post/${post.slug}`}>{post.title}</Typography>
+              <Typography variant="headline" component={Link} to={`/post/${post.slug}`} className={classes.link}>{post.title}</Typography>
               <Typography variant="subheading" paragraph><Moment date={post.date} format="dddd, MMMM Do, YYYY" /></Typography>
               <Typography variant="body1" color="textSecondary" component={ReactMarkdown} source={post.body} paragraph />
             </Paper>

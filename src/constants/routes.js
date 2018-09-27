@@ -9,6 +9,6 @@ export const Blog = {
   path: '/blog',
   exact: false,
   label: 'Blog',
-  component: 'src/containers/Home',
+  component: 'src/containers/Blog',
   condition: () => true,
 }

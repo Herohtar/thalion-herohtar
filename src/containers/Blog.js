@@ -1,5 +1,6 @@
 import React from 'react'
 import { SiteData, Head, RouteData, Link } from 'react-static'
+import path from 'path'
 //
 import { withStyles } from '@material-ui/core/styles'
 import Grid from '@material-ui/core/Grid'

@@ -23,7 +23,7 @@ const styles = theme => ({
 export default withStyles(styles)(({ classes, match }) => (
   <div className={classes.root}>
     <SiteData render={({title}) => (
-        <Head title={title} />
+        <Head title={`Blog - ${title}`} />
     )} />
     <Grid container direction="column" spacing={16}>
       <RouteData render={({posts}) => (

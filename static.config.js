@@ -22,7 +22,7 @@ function getPosts() {
       month,
       day,
       name,
-      path: `${year}/${month}/${day}/${name}`,
+      path: path.join(year, month, day, name),
       ...JSON.parse(fs.readFileSync(file))
     }
   }).reverse()
@@ -34,15 +34,15 @@ function group(posts, category) {
     switch (category) {
       case 'year':
         element = c.year
-        c.path = `${c.month}/${c.day}/${c.name}`
+        c.path = path.join(c.month, c.day, c.name)
         break
         case 'month':
         element = c.month
-        c.path = `${c.day}/${c.name}`
+        c.path = path.join(c.day, c.name)
         break
         case 'day':
         element = c.day
-        c.path = `${c.name}`
+        c.path = c.name
         break
     }
     a[element] = a[element] || []

@@ -69,19 +69,19 @@ export default {
         }),
         children: Object.entries(group(posts, 'year')).map(([year, postsByYear]) => ({
           path: `/${year}`,
-          component: 'src/containers/Home',
+          component: routes.Blog.component,
           getData: () => ({
             postsByYear,
           }),
           children: Object.entries(group(postsByYear, 'month')).map(([month, postsByMonth]) => ({
             path: `/${month}`,
-            component: 'src/containers/Home',
+            component: routes.Blog.component,
             getData: () => ({
               postsByMonth,
             }),
             children: Object.entries(group(postsByMonth, 'day')).map(([day, postsByDay]) => ({
               path: `/${day}`,
-              component: 'src/containers/Home',
+              component: routes.Blog.component,
               getData: () => ({
                 postsByDay,
               }),

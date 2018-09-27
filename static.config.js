@@ -6,7 +6,6 @@ import { MuiThemeProvider, createMuiTheme, createGenerateClassName } from '@mate
 import fs from 'fs'
 import path from 'path'
 import glob from 'glob'
-import moment from 'moment'
 
 import * as routes from './src/constants/routes'
 import theme from './src/theme'
@@ -18,13 +17,12 @@ function getPosts() {
     const fileName = path.basename(file, '.json')
     const [year, month, day, ...nameParts] = fileName.split('-')
     const name = nameParts.join('-')
-    const path = `${year}/${month}/${day}/${name}`
     return {
       year,
       month,
       day,
       name,
-      path,
+      path: `${year}/${month}/${day}/${name}`,
       ...JSON.parse(fs.readFileSync(file))
     }
   }).reverse()

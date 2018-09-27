@@ -23,5 +23,6 @@ export default withStyles(styles)(({ classes }) => (
     )} />
     <Typography variant="display1" paragraph>Welcome!</Typography>
     <Typography variant="body1" paragraph>This site has nothing on it... yet.</Typography>
+    <Typography variant="body2">Check out the <Link to="/blog">blog</Link>.</Typography>
   </div>
 ))

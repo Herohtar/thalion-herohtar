@@ -20,7 +20,7 @@ const styles = theme => ({
   },
 })
 
-export default withStyles(styles)(({ classes, match }) => (
+export default withStyles(styles)(({ classes }) => (
   <div className={classes.root}>
     <SiteData render={({title}) => (
         <Head title={title} />
@@ -30,7 +30,7 @@ export default withStyles(styles)(({ classes, match }) => (
         posts.map(post => (
           <Grid item xs="auto" key={post.path}>
             <Paper className={classes.post}>
-              <Typography variant="headline" component={Link} to={post.path} className={classes.link}>{JSON.stringify(match)}</Typography>
+              <Typography variant="headline" component={Link} to={post.path} className={classes.link}>{post.title}</Typography>
               <Typography variant="subheading" paragraph><Moment date={post.date} format="dddd, MMMM Do, YYYY" /></Typography>
               <Typography variant="body1" color="textSecondary" component={ReactMarkdown} source={post.body} paragraph />
             </Paper>

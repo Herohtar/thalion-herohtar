@@ -22,7 +22,7 @@ function getPosts() {
       month,
       day,
       name,
-      path: `${year}/${month}/${day}/${name}`,
+      path: `/${year}/${month}/${day}/${name}`,
       ...JSON.parse(fs.readFileSync(file))
     }
   }).reverse()
@@ -71,19 +71,19 @@ export default {
           path: `/${year}`,
           component: routes.Blog.component,
           getData: () => ({
-            postsByYear,
+            posts: postsByYear,
           }),
           children: Object.entries(group(postsByYear, 'month')).map(([month, postsByMonth]) => ({
             path: `/${month}`,
             component: routes.Blog.component,
             getData: () => ({
-              postsByMonth,
+              posts: postsByMonth,
             }),
             children: Object.entries(group(postsByMonth, 'day')).map(([day, postsByDay]) => ({
               path: `/${day}`,
               component: routes.Blog.component,
               getData: () => ({
-                postsByDay,
+                posts: postsByDay,
               }),
               children: postsByDay.map(post => ({
                 path: `/${post.name}`,

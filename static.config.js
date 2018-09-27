@@ -18,11 +18,13 @@ function getPosts() {
     const fileName = path.basename(file, '.json')
     const [year, month, day, ...nameParts] = fileName.split('-')
     const name = nameParts.join('-')
+    const path = `${year}/${month}/${day}/${name}`
     return {
       year,
       month,
       day,
       name,
+      path,
       ...JSON.parse(fs.readFileSync(file))
     }
   }).reverse()

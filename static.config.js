@@ -6,6 +6,7 @@ import { MuiThemeProvider, createMuiTheme, createGenerateClassName } from '@mate
 import fs from 'fs'
 import path from 'path'
 import glob from 'glob'
+import moment from 'moment'
 
 import * as routes from './src/constants/routes'
 import theme from './src/theme'
@@ -17,6 +18,33 @@ function getPosts() {
     slug: path.basename(file, '.json'),
     ...JSON.parse(fs.readFileSync(file))
   })).reverse()
+}
+
+function groupByDay(posts) {
+  return posts.reduce((a, c) => {
+    const day = moment(c.date).date()
+    a[day] = a[day] || []
+    a[day].push(c)
+    return a
+  }, {})
+}
+
+function groupByMonth(posts) {
+  return posts.reduce((a, c) => {
+    const month = moment(c.date).month()
+    a[month] = a[month] || []
+    a[month].push(c)
+    return a
+  }, {})
+}
+
+function groupByYear(posts) {
+  return posts.reduce((a, c) => {
+    const year = moment(c.date).year()
+    a[year] = a[year] || []
+    a[year].push(c)
+    return a
+  }, {})
 }
 
 export default {

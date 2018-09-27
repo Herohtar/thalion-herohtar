@@ -61,7 +61,7 @@ export default {
         path: routes.Home.path,
         component: routes.Home.component,
         getData: () => ({
-          posts: posts,
+          posts,
         }),
         children: Object.entries(group(posts, 'year')).map(([year, posts]) => ({
           path: `/post/${year}`,

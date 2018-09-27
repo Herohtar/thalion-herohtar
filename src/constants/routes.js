@@ -5,3 +5,10 @@ export const Home = {
   component: 'src/containers/Home',
   condition: () => true,
 }
+export const Blog = {
+  path: '/blog',
+  exact: false,
+  label: 'Blog',
+  component: 'src/containers/Blog',
+  condition: () => true,
+}

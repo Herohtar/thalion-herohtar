@@ -18,7 +18,7 @@ export default withStyles(styles)(({ classes }) => (
       <SiteData render={({title}) => (
           <Head title={`${post.title} - ${title}`} />
       )} />
-      <Button component={Link} to="/">← Back</Button>
+      <Button component={Link} to="/blog">← Back</Button>
       <Typography variant="headline">{post.title}</Typography>
       <Typography variant="subheading" paragraph><Moment date={post.date} format="dddd, MMMM Do, YYYY" /></Typography>
       <Typography variant="body1" color="textSecondary" component={ReactMarkdown} source={post.body} />

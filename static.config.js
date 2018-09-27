@@ -13,10 +13,42 @@ import theme from './src/theme'
 import siteConfig from './src/content/SiteConfig.json'
 
 function getPosts() {
-  return glob.sync('./src/content/blog/*.json').map(file => ({
-    slug: path.basename(file, '.json'),
-    ...JSON.parse(fs.readFileSync(file))
-  })).reverse()
+  return glob.sync('./src/content/blog/*.json').map(file => {
+    const fileName = path.basename(file, '.json')
+    const [year, month, day, ...nameParts] = fileName.split('-')
+    const name = nameParts.join('-')
+    return {
+      year,
+      month,
+      day,
+      name,
+      path: `${year}/${month}/${day}/${name}`,
+      ...JSON.parse(fs.readFileSync(file))
+    }
+  }).reverse()
+}
+
+function group(posts, category) {
+  return JSON.parse(JSON.stringify(posts)).reduce((a, c) => {
+    let element
+    switch (category) {
+      case 'year':
+        element = c.year
+        c.path = `${c.month}/${c.day}/${c.name}`
+        break
+        case 'month':
+        element = c.month
+        c.path = `${c.day}/${c.name}`
+        break
+        case 'day':
+        element = c.day
+        c.path = `${c.name}`
+        break
+    }
+    a[element] = a[element] || []
+    a[element].push(c)
+    return a
+  }, {})
 }
 
 export default {
@@ -28,15 +60,40 @@ export default {
       {
         path: routes.Home.path,
         component: routes.Home.component,
+      },
+      {
+        path: routes.Blog.path,
+        component: routes.Blog.component,
         getData: () => ({
-          posts: posts,
+          posts,
         }),
-        children: posts.map(post => ({
-          path: `/post/${post.slug}`,
-          component: 'src/containers/Post',
+        children: Object.entries(group(posts, 'year')).map(([year, postsByYear]) => ({
+          path: `/${year}`,
+          component: routes.Blog.component,
           getData: () => ({
-            post,
+            posts: postsByYear,
           }),
+          children: Object.entries(group(postsByYear, 'month')).map(([month, postsByMonth]) => ({
+            path: `/${month}`,
+            component: routes.Blog.component,
+            getData: () => ({
+              posts: postsByMonth,
+            }),
+            children: Object.entries(group(postsByMonth, 'day')).map(([day, postsByDay]) => ({
+              path: `/${day}`,
+              component: routes.Blog.component,
+              getData: () => ({
+                posts: postsByDay,
+              }),
+              children: postsByDay.map(post => ({
+                path: `/${post.name}`,
+                component: 'src/containers/Post',
+                getData: () => ({
+                  post,
+                }),
+              })),
+            })),
+          })),
         })),
       },
       {

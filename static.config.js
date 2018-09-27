@@ -60,11 +60,15 @@ export default {
       {
         path: routes.Home.path,
         component: routes.Home.component,
+      },
+      {
+        path: routes.Blog.path,
+        component: routes.Blog.component,
         getData: () => ({
           posts,
         }),
         children: Object.entries(group(posts, 'year')).map(([year, postsByYear]) => ({
-          path: `/post/${year}`,
+          path: `/${year}`,
           component: 'src/containers/Home',
           getData: () => ({
             postsByYear,

@@ -29,7 +29,7 @@ function getPosts() {
 }
 
 function group(posts, category) {
-  return posts.reduce((a, c) => {
+  return JSON.parse(JSON.stringify(posts)).reduce((a, c) => {
     let element
     switch (category) {
       case 'year':

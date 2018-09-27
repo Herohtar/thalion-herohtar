@@ -15,7 +15,7 @@ import siteConfig from './src/content/SiteConfig.json'
 
 function getPosts() {
   return glob.sync('./src/content/blog/*.json').map(file => {
-    fileName = path.basename(file, '.json')
+    const fileName = path.basename(file, '.json')
     const [year, month, day, ...nameParts] = fileName.split('-')
     const name = nameParts.join('-')
     return {

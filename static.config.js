@@ -47,8 +47,8 @@ function generateCollectionRoutes(posts, groups) {
       children: generateCollectionRoutes(groupedPosts, groups.slice(1)),
     }))
   }
-  
-  return null;
+
+  return [];
 }
 
 export default {

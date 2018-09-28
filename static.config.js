@@ -59,14 +59,14 @@ function generateChildRoutes(groups, posts) {
     }))
   }
 
-  return Object.entries(groupPosts(posts, groups.shift()).map(([category, groupedPosts]) => ({
+  return Object.entries(groupPosts(posts, groups.shift())).map(([category, groupedPosts]) => ({
     path: `/${category}`,
     component: routes.Blog.component,
     getData: () => ({
       posts: groupedPosts,
     }),
     children: generateChildRoutes(groups, groupedPosts),
-  })))
+  }))
 }
 
 export default {

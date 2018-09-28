@@ -28,7 +28,7 @@ function getPosts() {
   }).reverse()
 }
 
-function group(posts, category) {
+function groupPosts(posts, category) {
   return JSON.parse(JSON.stringify(posts)).reduce((a, c) => {
     let element
     switch (category) {
@@ -48,6 +48,27 @@ function group(posts, category) {
   }, {})
 }
 
+function generateChildRoutes(groups, posts) {
+  if (groups.length === 0) {
+    return posts.map(post => ({
+      path: `/${post.name}`,
+      component: 'src/containers/Post',
+      getData: () => ({
+        post,
+      }),
+    }))
+  }
+
+  return Object.entries(groupPosts(posts, groups.shift()).map(([category, groupedPosts]) => ({
+    path: `/${category}`,
+    component: routes.Blog.component,
+    getData: () => ({
+      posts: groupedPosts,
+    }),
+    children: generateChildRoutes(groups, groupedPosts),
+  })))
+}
+
 export default {
   siteRoot: siteConfig.url,
   getSiteData: () => siteConfig,
@@ -64,34 +85,7 @@ export default {
         getData: () => ({
           posts,
         }),
-        children: Object.entries(group(posts, 'year')).map(([year, postsByYear]) => ({
-          path: `/${year}`,
-          component: routes.Blog.component,
-          getData: () => ({
-            posts: postsByYear,
-          }),
-          children: Object.entries(group(postsByYear, 'month')).map(([month, postsByMonth]) => ({
-            path: `/${month}`,
-            component: routes.Blog.component,
-            getData: () => ({
-              posts: postsByMonth,
-            }),
-            children: Object.entries(group(postsByMonth, 'day')).map(([day, postsByDay]) => ({
-              path: `/${day}`,
-              component: routes.Blog.component,
-              getData: () => ({
-                posts: postsByDay,
-              }),
-              children: postsByDay.map(post => ({
-                path: `/${post.name}`,
-                component: 'src/containers/Post',
-                getData: () => ({
-                  post,
-                }),
-              })),
-            })),
-          })),
-        })),
+        children: generateChildRoutes(['year', 'month', 'day'], posts),
       },
       {
         is404: true,

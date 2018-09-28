@@ -48,24 +48,25 @@ function groupPosts(posts, category) {
   }, {})
 }
 
-function generateChildRoutes(groups, posts) {
-  if (groups.length === 0) {
-    return posts.map(post => ({
-      path: `/${post.name}`,
-      component: 'src/containers/Post',
+function generateChildRoutes(posts, groups) {
+  if (groups.length > 0) {
+    const group = group.shift()
+    return Object.entries(groupPosts(posts, group)).map(([grouping, groupedPosts]) => ({
+      path: `/${grouping}`,
+      component: routes.Blog.component,
       getData: () => ({
-        post,
+        posts: groupedPosts,
       }),
+      children: generateChildRoutes(groupedPosts, groups),
     }))
   }
-
-  return Object.entries(groupPosts(posts, groups.shift())).map(([category, groupedPosts]) => ({
-    path: `/${category}`,
-    component: routes.Blog.component,
+  
+  return posts.map(post => ({
+    path: `/${post.name}`,
+    component: 'src/containers/Post',
     getData: () => ({
-      posts: groupedPosts,
+      post,
     }),
-    children: generateChildRoutes(groups, groupedPosts),
   }))
 }
 
@@ -85,7 +86,7 @@ export default {
         getData: () => ({
           posts,
         }),
-        children: generateChildRoutes(['year', 'month', 'day'], posts),
+        children: generateChildRoutes(posts, ['year', 'month', 'day']),
       },
       {
         is404: true,

@@ -29,22 +29,10 @@ function getPosts() {
 }
 
 function groupPosts(posts, category) {
-  return JSON.parse(JSON.stringify(posts)).reduce((a, c) => {
-    let element
-    switch (category) {
-      case 'year':
-        element = c.year
-        break
-        case 'month':
-        element = c.month
-        break
-        case 'day':
-        element = c.day
-        break
-    }
-    a[element] = a[element] || []
-    a[element].push(c)
-    return a
+  return posts.reduce((accumulator, currentItem) => {
+    accumulator[currentItem[category]] = accumulator[currentItem[category]] || []
+    accumulator[currentItem[category]].push(currentItem)
+    return accumulator
   }, {})
 }
 

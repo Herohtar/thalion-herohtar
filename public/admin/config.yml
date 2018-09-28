@@ -25,7 +25,7 @@ collections:
     folder: "src/content/blog"
     create: true
     format: "json"
-    slug: "{{year}}-{{month}}-{{day}}-{{hour}}{{minute}}{{second}}_{{slug}}"
+    slug: "{{year}}-{{month}}-{{day}}-{{hour}}{{minute}}{{second}}-{{slug}}"
     fields:
       - {label: "Title", name: "title", widget: "string"}
       - {label: "Publish Date", name: "date", widget: "datetime"}

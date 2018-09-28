@@ -50,7 +50,7 @@ function groupPosts(posts, category) {
 
 function generateChildRoutes(posts, groups) {
   if (groups.length > 0) {
-    const group = group.shift()
+    const group = groups.shift()
     return Object.entries(groupPosts(posts, group)).map(([grouping, groupedPosts]) => ({
       path: `/${grouping}`,
       component: routes.Blog.component,

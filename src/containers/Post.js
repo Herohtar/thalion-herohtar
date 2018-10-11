@@ -19,9 +19,9 @@ export default withStyles(styles)(({ classes }) => (
           <Head title={`${post.title} - ${title}`} />
       )} />
       <Button component={Link} to="/blog">← Back</Button>
-      <Typography variant="headline">{post.title}</Typography>
-      <Typography variant="subheading" paragraph><Moment date={post.date} format="dddd, MMMM Do, YYYY" /></Typography>
-      <Typography variant="body1" color="textSecondary" component={ReactMarkdown} source={post.body} />
+      <Typography variant="h5">{post.title}</Typography>
+      <Typography variant="subtitle1" paragraph><Moment date={post.date} format="dddd, MMMM Do, YYYY" /></Typography>
+      <Typography variant="body2" color="textSecondary" component={ReactMarkdown} source={post.body} />
     </div>
   )} />
 ))

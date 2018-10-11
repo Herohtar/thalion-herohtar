@@ -27,14 +27,14 @@ export default withStyles(styles)(({ classes }) => (
     )} />
     <RouteData render={({header, posts}) => (
       <React.Fragment>
-        <Typography variant="display1" paragraph>{header || 'All Posts'}</Typography>
+        <Typography variant="h4" paragraph>{header || 'All Posts'}</Typography>
         <Grid container direction="column" spacing={16}>
           {posts.map(post => (
             <Grid item xs="auto" key={post.path}>
               <Paper className={classes.post}>
-                <Typography variant="headline" component={Link} to={post.path} className={classes.link}>{post.title}</Typography>
-                <Typography variant="subheading" paragraph><Moment date={post.date} format="dddd, MMMM Do, YYYY" /></Typography>
-                <Typography variant="body1" color="textSecondary" component={ReactMarkdown} source={post.body} paragraph />
+                <Typography variant="h5" component={Link} to={post.path} className={classes.link}>{post.title}</Typography>
+                <Typography variant="subtitle1" paragraph><Moment date={post.date} format="dddd, MMMM Do, YYYY" /></Typography>
+                <Typography variant="body2" color="textSecondary" component={ReactMarkdown} source={post.body} paragraph />
               </Paper>
             </Grid>
           ))}

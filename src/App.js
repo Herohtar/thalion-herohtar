@@ -54,7 +54,7 @@ class App extends React.PureComponent {
           <CssBaseline />
           <SiteData render={({title}) => (
             <Grid item component="header" xs="auto" className={classes.header}>
-              <Typography variant="display3" component={Link} to='/' className={classes.link}>{title}</Typography>
+              <Typography variant="h2" component={Link} to='/' className={classes.link}>{title}</Typography>
             </Grid>
           )} />
           <Grid item container justify="center" component="main" className={classes.flexGrow}>

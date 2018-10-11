@@ -10,4 +10,7 @@ export default {
       footer: grey[400],
     },
   },
+  typography: {
+    useNextVariants: true,
+  },
 }

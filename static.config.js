@@ -8,7 +8,6 @@ import path from 'path'
 import glob from 'glob'
 import moment from 'moment'
 
-import * as routes from './src/constants/routes'
 import theme from './src/theme'
 
 import siteConfig from './src/content/SiteConfig.json'
@@ -23,7 +22,7 @@ function getPosts() {
       month,
       day,
       name,
-      path: path.posix.join(routes.Blog.path, name),
+      path: path.posix.join('/blog', name),
       ...JSON.parse(fs.readFileSync(file))
     }
   }).reverse()
@@ -50,7 +49,7 @@ function generateCategoryRoutes(posts, categories, previousGroups = []) {
 
       return {
         path: `/${group}`,
-        component: routes.Blog.component,
+        component: 'src/pages/blog',
         getData: () => ({
           header: `Posts from ${date.format(formats[currentGroups.length - 1])}`,
           posts: groupedPosts,
@@ -70,12 +69,7 @@ export default {
     const posts = getPosts()
     return [
       {
-        path: routes.Home.path,
-        component: routes.Home.component,
-      },
-      {
-        path: routes.Blog.path,
-        component: routes.Blog.component,
+        path: '/blog',
         getData: () => ({
           posts,
         }),
@@ -89,10 +83,6 @@ export default {
           })),
           ...generateCategoryRoutes(posts, ['year', 'month', 'day']),
         ],
-      },
-      {
-        is404: true,
-        component: 'src/containers/404',
       },
     ]
   },

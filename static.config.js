@@ -86,21 +86,19 @@ export default {
       },
     ]
   },
-  renderToElement: (Comp, { meta }) => {
-    const sheetsRegistry = new SheetsRegistry()
-    const muiTheme = createMuiTheme(theme)
-    const generateClassName = createGenerateClassName()
-    const app = (
-      <JssProvider registry={sheetsRegistry} generateClassName={generateClassName}>
-        <MuiThemeProvider theme={muiTheme} sheetsManager={new Map()}>
-          <Comp />
-        </MuiThemeProvider>
-      </JssProvider>
-    )
+  renderToElement: App => (
+    <JssProvider registry={new SheetsRegistry()} generateClassName={createGenerateClassName()}>
+      <MuiThemeProvider theme={createMuiTheme(theme)} sheetsManager={new Map()}>
+        <App />
+      </MuiThemeProvider>
+    </JssProvider>
+  ),
+  renderToHtml: (render, app, { meta }) => {
+    const html = render(app)
 
-    meta.jssStyles = sheetsRegistry.toString()
+    meta.jssStyles = app.props.registry.toString()
 
-    return app
+    return html
   },
   Document: ({ Html, Head, Body, children, renderMeta }) => (
     <Html>

@@ -86,11 +86,11 @@ export default {
       },
     ]
   },
-  renderToHtml: (render, Comp, meta) => {
+  renderToElement: (Comp, { meta }) => {
     const sheetsRegistry = new SheetsRegistry()
     const muiTheme = createMuiTheme(theme)
     const generateClassName = createGenerateClassName()
-    const html = render(
+    const app = (
       <JssProvider registry={sheetsRegistry} generateClassName={generateClassName}>
         <MuiThemeProvider theme={muiTheme} sheetsManager={new Map()}>
           <Comp />
@@ -100,27 +100,19 @@ export default {
 
     meta.jssStyles = sheetsRegistry.toString()
 
-    return html
+    return app
   },
-  Document: class CustomHtml extends React.Component {
-    render() {
-      const {
-        Html, Head, Body, children, renderMeta,
-      } = this.props
-
-      return (
-        <Html>
-          <Head>
-            <meta charSet="UTF-8" />
-            <meta name="viewport" content="width=device-width, initial-scale=1" />
-            <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700" rel="stylesheet" />
-          </Head>
-          <Body>
-            {children}
-            <style id="jss-server-side">{renderMeta.jssStyles}</style>
-          </Body>
-        </Html>
-      )
-    }
-  },
+  Document: ({ Html, Head, Body, children, renderMeta }) => (
+    <Html>
+      <Head>
+        <meta charSet="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700" rel="stylesheet" />
+      </Head>
+      <Body>
+        {children}
+        <style id="jss-server-side">{renderMeta.jssStyles}</style>
+      </Body>
+    </Html>
+  ),
 }

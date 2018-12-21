@@ -86,31 +86,4 @@ export default {
       },
     ]
   },
-  renderToElement: App => (
-    <JssProvider registry={new SheetsRegistry()} generateClassName={createGenerateClassName()}>
-      <MuiThemeProvider theme={createMuiTheme(theme)} sheetsManager={new Map()}>
-        <App />
-      </MuiThemeProvider>
-    </JssProvider>
-  ),
-  renderToHtml: (render, app, { meta }) => {
-    const html = render(app)
-
-    meta.jssStyles = app.props.registry.toString()
-
-    return html
-  },
-  Document: ({ Html, Head, Body, children, renderMeta }) => (
-    <Html>
-      <Head>
-        <meta charSet="UTF-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700" rel="stylesheet" />
-      </Head>
-      <Body>
-        {children}
-        <style id="jss-server-side">{renderMeta.jssStyles}</style>
-      </Body>
-    </Html>
-  ),
 }

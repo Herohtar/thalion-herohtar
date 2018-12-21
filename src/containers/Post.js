@@ -1,5 +1,6 @@
 import React from 'react'
-import { SiteData, Head, RouteData, Link } from 'react-static'
+import { SiteData, Head, RouteData } from 'react-static'
+import { Link } from '@reach/router'
 //
 import { withStyles } from '@material-ui/core/styles'
 import Button from '@material-ui/core/Button'
@@ -13,15 +14,19 @@ const styles = theme => ({
 })
 
 export default withStyles(styles)(({ classes }) => (
-  <RouteData render={({post}) => (
-    <div className={classes.root}>
-      <SiteData render={({title}) => (
-          <Head title={`${post.title} - ${title}`} />
-      )} />
-      <Button component={Link} to="/blog">← Back</Button>
-      <Typography variant="h5">{post.title}</Typography>
-      <Typography variant="subtitle1" paragraph><Moment date={post.date} format="dddd, MMMM Do, YYYY" /></Typography>
-      <Typography variant="body2" color="textSecondary" component={ReactMarkdown} source={post.body} />
-    </div>
-  )} />
+  <RouteData>
+    {({post}) => (
+      <div className={classes.root}>
+        <SiteData>
+          {({title}) => (
+            <Head title={`${post.title} - ${title}`} />
+          )}
+        </SiteData>
+        <Button component={Link} to="/blog">← Back</Button>
+        <Typography variant="h5">{post.title}</Typography>
+        <Typography variant="subtitle1" paragraph><Moment date={post.date} format="dddd, MMMM Do, YYYY" /></Typography>
+        <Typography variant="body2" color="textSecondary" component={ReactMarkdown} source={post.body} />
+      </div>
+    )}
+  </RouteData>
 ))

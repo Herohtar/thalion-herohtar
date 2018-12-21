@@ -1,6 +1,6 @@
 import React from 'react'
-import { SiteData, Router, Link } from 'react-static'
-import Routes from 'react-static-routes'
+import { SiteData, Root, Routes } from 'react-static'
+import { Link } from '@reach/router'
 //
 import { withStyles } from '@material-ui/core/styles'
 import CssBaseline from '@material-ui/core/CssBaseline'
@@ -49,14 +49,16 @@ class App extends React.PureComponent {
     const { classes } = this.props
 
     return (
-      <Router>
+      <Root>
         <Grid container direction="column" justify="space-between" alignItems="center" className={classes.root}>
           <CssBaseline />
-          <SiteData render={({title}) => (
-            <Grid item component="header" xs="auto" className={classes.header}>
-              <Typography variant="h2" component={Link} to='/' className={classes.link}>{title}</Typography>
-            </Grid>
-          )} />
+          <SiteData>
+            {({title}) => (
+              <Grid item component="header" xs="auto" className={classes.header}>
+                <Typography variant="h2" component={Link} to='/' className={classes.link}>{title}</Typography>
+              </Grid>
+            )}
+          </SiteData>
           <Grid item container justify="center" component="main" className={classes.flexGrow}>
             <Grid item xs={12} sm={11} md={9} lg={6} className={classes.flexColumn}>
               <Paper className={[classes.content, classes.flexGrow].join(' ')}>
@@ -68,7 +70,7 @@ class App extends React.PureComponent {
             <Typography variant="caption" align="center" color="inherit">Powered by Firebase, React Static, and Netlify CMS</Typography>
           </Grid>
         </Grid>
-      </Router>
+      </Root>
     )
   }
 }

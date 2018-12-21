@@ -25,7 +25,7 @@
     "react-jss": "^8.6.1",
     "react-markdown": "^4.0.4",
     "react-moment": "^0.8.4",
-    "react-static": "^6.0.13"
+    "react-static": "^6.0.14"
   },
   "devDependencies": {
     "eslint-config-react-tools": "^1.1.6",

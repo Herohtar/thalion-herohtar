@@ -1,14 +1,7 @@
-import React from 'react'
-import { SheetsRegistry } from 'react-jss/lib/jss'
-import JssProvider from 'react-jss/lib/JssProvider'
-import { MuiThemeProvider, createMuiTheme, createGenerateClassName } from '@material-ui/core/styles'
-
 import fs from 'fs'
 import path from 'path'
 import glob from 'glob'
 import moment from 'moment'
-
-import theme from './src/theme'
 
 import siteConfig from './src/content/SiteConfig.json'
 

@@ -1,3 +1,5 @@
+import React from 'react'
+//
 import fs from 'fs'
 import path from 'path'
 import glob from 'glob'
@@ -79,4 +81,16 @@ export default {
       },
     ]
   },
+  Document: ({ Html, Head, Body, children }) => (
+    <Html lang="en-US">
+      <Head>
+        <meta charSet="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700" rel="stylesheet" />
+      </Head>
+      <Body>
+        {children}
+      </Body>
+    </Html>
+  ),
 }

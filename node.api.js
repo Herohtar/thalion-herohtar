@@ -24,7 +24,6 @@ export default () => ({
   Head: ({ meta }) => (
     <React.Fragment>
       <style id="jss-server-side" dangerouslySetInnerHTML={{ __html: meta.sheetsRegistry.toString() }} />
-      <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700" rel="stylesheet" />
     </React.Fragment>
   )
 })

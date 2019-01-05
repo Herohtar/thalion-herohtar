@@ -22,7 +22,14 @@ if (typeof document !== 'undefined') {
           <Comp />
         </MuiThemeProvider>
       </AppContainer>,
-      document.getElementById('root'))
+      document.getElementById('root'),
+      () => {
+        const jssStyles = document.getElementById('jss-server-side')
+        if (jssStyles && jssStyles.parentNode) {
+          jssStyles.parentNode.removeChild(jssStyles)
+        }
+      }
+    )
   }
 
   // Render!

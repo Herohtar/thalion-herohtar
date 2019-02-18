@@ -5,6 +5,7 @@ node_modules/
 /coverage
 
 # production
+/artifacts
 /dist
 /tmp
 

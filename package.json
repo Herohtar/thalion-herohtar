@@ -21,11 +21,11 @@
     "moment": "^2.24.0",
     "react": "^16.8.2",
     "react-dom": "^16.8.2",
-    "react-hot-loader": "^4.6.5",
+    "react-hot-loader": "^4.7.0",
     "react-jss": "^8.6.1",
     "react-markdown": "^4.0.6",
     "react-moment": "^0.8.4",
-    "react-static": "^6.3.2"
+    "react-static": "^6.3.6"
   },
   "devDependencies": {
     "eslint-config-react-tools": "^1.1.6",

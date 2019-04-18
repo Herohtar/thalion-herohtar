@@ -1,7 +1,7 @@
 import React from 'react'
-import { SiteData, Root, Routes } from 'react-static'
-import { Link } from '@reach/router'
+import { Root, Routes, useSiteData } from 'react-static'
 //
+import { Link, Router } from 'components/Router'
 import { withStyles } from '@material-ui/core/styles'
 import CssBaseline from '@material-ui/core/CssBaseline'
 import Grid from '@material-ui/core/Grid'
@@ -37,29 +37,28 @@ const styles = theme => ({
   },
 })
 
-const App = ({ classes }) => (
-  <Root>
-    <Grid container direction="column" justify="space-between" alignItems="center" className={classes.root}>
-      <CssBaseline />
-      <SiteData>
-        {({title}) => (
-          <Grid item component="header" xs="auto" className={classes.header}>
-            <Typography variant="h2" component={Link} to='/' className={classes.link}>{title}</Typography>
+const App = ({ classes }) => {
+  const { title } = useSiteData()
+  return (
+    <Root>
+      <Grid container direction="column" justify="space-between" alignItems="center" className={classes.root}>
+        <CssBaseline />
+        <Grid item component="header" xs="auto" className={classes.header}>
+          <Typography variant="h2" component={Link} to='/' className={classes.link}>{title}</Typography>
+        </Grid>
+        <Grid item container justify="center" component="main" className={classes.flexGrow}>
+          <Grid item xs={12} sm={11} md={9} lg={6} className={classes.flexColumn}>
+            <Paper className={[classes.content, classes.flexGrow].join(' ')}>
+              <Routes />
+            </Paper>
           </Grid>
-        )}
-      </SiteData>
-      <Grid item container justify="center" component="main" className={classes.flexGrow}>
-        <Grid item xs={12} sm={11} md={9} lg={6} className={classes.flexColumn}>
-          <Paper className={[classes.content, classes.flexGrow].join(' ')}>
-            <Routes />
-          </Paper>
+        </Grid>
+        <Grid item className={classes.footer} component="footer" xs="auto">
+          <Typography variant="caption" align="center" color="inherit">Powered by Firebase, React Static, and Netlify CMS</Typography>
         </Grid>
       </Grid>
-      <Grid item className={classes.footer} component="footer" xs="auto">
-        <Typography variant="caption" align="center" color="inherit">Powered by Firebase, React Static, and Netlify CMS</Typography>
-      </Grid>
-    </Grid>
-  </Root>
-)
+    </Root>
+  )
+}
 
 export default withStyles(styles)(App)

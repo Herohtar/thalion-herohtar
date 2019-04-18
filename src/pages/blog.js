@@ -1,7 +1,7 @@
 import React from 'react'
-import { SiteData, Head, RouteData } from 'react-static'
-import { Link } from '@reach/router'
+import { Head, useSiteData, useRouteData } from 'react-static'
 //
+import { Link } from 'components/Router'
 import { withStyles } from '@material-ui/core/styles'
 import Grid from '@material-ui/core/Grid'
 import Paper from '@material-ui/core/Paper'
@@ -21,30 +21,24 @@ const styles = theme => ({
   },
 })
 
-export default withStyles(styles)(({ classes }) => (
-  <div className={classes.root}>
-    <SiteData>
-      {({title}) => (
-        <Head title={`Blog - ${title}`} />
-      )}
-    </SiteData>
-    <RouteData>
-      {({header, posts}) => (
-        <React.Fragment>
-          <Typography variant="h4" paragraph>{header || 'All Posts'}</Typography>
-          <Grid container direction="column" spacing={16}>
-            {posts.map(post => (
-              <Grid item xs="auto" key={post.path}>
-                <Paper className={classes.post}>
-                  <Typography variant="h5" component={Link} to={post.path} className={classes.link}>{post.title}</Typography>
-                  <Typography variant="subtitle1" paragraph><Moment date={post.date} format="dddd, MMMM Do, YYYY" /></Typography>
-                  <Typography variant="body2" color="textSecondary" component={ReactMarkdown} source={post.body} paragraph />
-                </Paper>
-              </Grid>
-            ))}
+export default withStyles(styles)(({ classes }) => {
+  const { title } = useSiteData()
+  const { header, posts } = useRouteData()
+  return (
+    <div className={classes.root}>
+      <Head title={`${header || 'Blog'} - ${title}`} />
+      <Typography variant="h4" paragraph>{header || 'All Posts'}</Typography>
+      <Grid container direction="column" spacing={16}>
+        {posts.map(post => (
+          <Grid item xs="auto" key={post.path}>
+            <Paper className={classes.post}>
+              <Typography variant="h5" component={Link} to={post.path} className={classes.link}>{post.title}</Typography>
+              <Typography variant="subtitle1" paragraph><Moment date={post.date} format="dddd, MMMM Do, YYYY" /></Typography>
+              <Typography variant="body2" color="textSecondary" component={ReactMarkdown} source={post.body} paragraph />
+            </Paper>
           </Grid>
-        </React.Fragment>
-      )}
-    </RouteData>
-  </div>
-))
+        ))}
+      </Grid>
+    </div>
+  )
+})

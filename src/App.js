@@ -49,7 +49,9 @@ const App = ({ classes }) => {
         <Grid item container justify="center" component="main" className={classes.flexGrow}>
           <Grid item xs={12} sm={11} md={9} lg={6} className={classes.flexColumn}>
             <Paper className={[classes.content, classes.flexGrow].join(' ')}>
-              <Routes />
+              <React.Suspense fallback={'Loading...'}>
+                <Routes />
+              </React.Suspense>
             </Paper>
           </Grid>
         </Grid>

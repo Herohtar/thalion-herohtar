@@ -44,7 +44,7 @@ function generateCategoryRoutes(posts, categories, previousGroups = []) {
 
       return {
         path: `/${group}`,
-        component: 'src/pages/blog',
+        template: 'src/pages/blog',
         getData: () => ({
           header: `Posts from ${date.format(formats[currentGroups.length - 1])}`,
           posts: groupedPosts,
@@ -58,6 +58,16 @@ function generateCategoryRoutes(posts, categories, previousGroups = []) {
 }
 
 export default {
+  plugins: [
+    [
+      require.resolve('react-static-plugin-source-filesystem'),
+      {
+        location: path.resolve('./src/pages'),
+      },
+    ],
+    require.resolve('react-static-plugin-reach-router'),
+    require.resolve('react-static-plugin-sitemap'),
+  ],
   siteRoot: siteConfig.url,
   getSiteData: () => siteConfig,
   getRoutes: async () => {
@@ -71,7 +81,7 @@ export default {
         children: [
           ...posts.map(post => ({
             path: `/${post.name}`,
-            component: 'src/containers/Post',
+            template: 'src/containers/Post',
             getData: () => ({
               post,
             }),

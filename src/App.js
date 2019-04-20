@@ -1,7 +1,7 @@
 import React from 'react'
 import { Root, Routes, useSiteData } from 'react-static'
 //
-import { Link, Router } from 'components/Router'
+import { Link } from 'components/Router'
 import { withStyles } from '@material-ui/core/styles'
 import CssBaseline from '@material-ui/core/CssBaseline'
 import Grid from '@material-ui/core/Grid'
@@ -37,7 +37,7 @@ const styles = theme => ({
   },
 })
 
-const App = ({ classes }) => {
+export default withStyles(styles)(({ classes }) => {
   const { title } = useSiteData()
   return (
     <Root>
@@ -61,6 +61,4 @@ const App = ({ classes }) => {
       </Grid>
     </Root>
   )
-}
-
-export default withStyles(styles)(App)
+})

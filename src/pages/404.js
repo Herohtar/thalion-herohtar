@@ -1,12 +1,12 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import { Head, useSiteData } from 'react-static'
 //
 import Typography from '@material-ui/core/Typography'
 
-export default function NotFound() {
-  const [ready, setReady] = React.useState(false)
+export default () => {
+  const [ready, setReady] = useState(false)
 
-  React.useEffect(() => {
+  useEffect(() => {
     setReady(true)
   }, [])
 

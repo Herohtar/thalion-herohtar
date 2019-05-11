@@ -1,6 +1,6 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
-import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles'
+import { ThemeProvider } from '@material-ui/styles'
 
 // Your top level component
 import App from './App'
@@ -14,12 +14,11 @@ export default App
 if (typeof document !== 'undefined') {
   const target = document.getElementById('root')
   const renderMethod = target.hasChildNodes() ? ReactDOM.hydrate : ReactDOM.render
-  const muiTheme = createMuiTheme(theme)
   const render = Comp => {
     renderMethod(
-      <MuiThemeProvider theme={muiTheme}>
+      <ThemeProvider theme={theme}>
         <Comp />
-      </MuiThemeProvider>,
+      </ThemeProvider>,
       target,
       () => {
         const jssStyles = document.getElementById('jss-server-side')

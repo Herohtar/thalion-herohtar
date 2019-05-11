@@ -21,8 +21,8 @@ if (typeof document !== 'undefined') {
       </ThemeProvider>,
       target,
       () => {
-        const jssStyles = document.getElementById('jss-server-side')
-        if (jssStyles && jssStyles.parentNode) {
+        const jssStyles = document.querySelector('#jss-server-side')
+        if (jssStyles) {
           jssStyles.parentNode.removeChild(jssStyles)
         }
       }

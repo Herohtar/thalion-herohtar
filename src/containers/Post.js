@@ -2,18 +2,19 @@ import React from 'react'
 import { Head, useSiteData, useRouteData } from 'react-static'
 //
 import { Link } from 'components/Router'
-import { withStyles } from '@material-ui/core/styles'
+import { makeStyles } from '@material-ui/styles'
 import Button from '@material-ui/core/Button'
 import Typography from '@material-ui/core/Typography'
 import Moment from 'react-moment'
 import ReactMarkdown from 'react-markdown'
 
-const styles = theme => ({
+const useStyles = makeStyles(theme => ({
   root: {
   },
-})
+}))
 
-export default withStyles(styles)(({ classes }) => {
+export default () => {
+  const classes = useStyles()
   const { title } = useSiteData()
   const { post } = useRouteData()
   return (
@@ -25,4 +26,4 @@ export default withStyles(styles)(({ classes }) => {
       <Typography variant="body2" color="textSecondary" component={ReactMarkdown} source={post.body} />
     </div>
   )
-})
+}

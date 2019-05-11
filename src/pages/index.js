@@ -2,22 +2,23 @@ import React from 'react'
 import { Head, useSiteData } from 'react-static'
 //
 import { Link } from 'components/Router'
-import { withStyles } from '@material-ui/core/styles'
+import { makeStyles } from '@material-ui/styles'
 import Typography from '@material-ui/core/Typography'
 
-const styles = theme => ({
+const useStyles = makeStyles(theme => ({
   root: {
   },
   post: {
     background: '#5a5a5a',
-    padding: theme.spacing.unit * 2,
+    padding: theme.spacing(2),
   },
   link: {
     textDecoration: 'none',
   },
-})
+}))
 
-export default withStyles(styles)(({ classes }) => {
+export default () => {
+  const classes = useStyles()
   const { title } = useSiteData()
   return (
     <div className={classes.root}>
@@ -27,4 +28,4 @@ export default withStyles(styles)(({ classes }) => {
       <Typography variant="body1">Check out the <Link to="/blog">blog</Link>.</Typography>
     </div>
   )
-})
+}

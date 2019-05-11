@@ -1,6 +1,7 @@
+import createMuiTheme from '@material-ui/core/createMuiTheme'
 import { blueGrey, deepOrange, grey } from '@material-ui/core/colors';
 
-export default {
+const theme = createMuiTheme({
   palette: {
     type: 'dark',
     primary: blueGrey,
@@ -10,7 +11,6 @@ export default {
       footer: grey[400],
     },
   },
-  typography: {
-    useNextVariants: true,
-  },
-}
+})
+
+export default theme;

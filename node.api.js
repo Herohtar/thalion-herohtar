@@ -5,9 +5,9 @@ import theme from './src/theme'
 
 export default () => ({
   beforeRenderToElement: (App, { meta }) => props => {
-    meta.sheetsRegistry = new ServerStyleSheets()
+    meta.muiSheets = new ServerStyleSheets()
 
-    return meta.sheetsRegistry.collect(
+    return meta.muiSheets.collect(
       <ThemeProvider theme={theme}>
         <App {...props} />
       </ThemeProvider>
@@ -15,6 +15,6 @@ export default () => ({
   },
   headElements: (elements, { meta }) => [
     ...elements,
-    <style id="jss-server-side" dangerouslySetInnerHTML={{ __html: meta.sheetsRegistry.toString() }} />,
+    meta.muiSheets.getStyleElement(),
   ],
 })

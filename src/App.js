@@ -34,6 +34,7 @@ const useStyles = makeStyles(theme => ({
   },
   link: {
     textDecoration: 'none',
+    color: theme.palette.text.link,
   },
 }))
 

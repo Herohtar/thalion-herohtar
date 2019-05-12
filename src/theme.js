@@ -8,6 +8,7 @@ const theme = createMuiTheme({
     secondary: blueGrey,
     error: deepOrange,
     text: {
+      link: '#fff',
       footer: grey[400],
     },
   },

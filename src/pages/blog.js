@@ -29,7 +29,7 @@ export default () => {
     <div className={classes.root}>
       <Head title={`${header || 'Blog'} - ${title}`} />
       <Typography variant="h4" paragraph>{header || 'All Posts'}</Typography>
-      <Grid container direction="column" spacing={16}>
+      <Grid container direction="column" spacing={2}>
         {posts.map(post => (
           <Grid item xs="auto" key={post.path}>
             <Paper className={classes.post}>

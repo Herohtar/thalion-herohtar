@@ -2,27 +2,27 @@ import React from 'react'
 import { Root, Routes, useSiteData } from 'react-static'
 //
 import { Link } from 'components/Router'
-import { withStyles } from '@material-ui/core/styles'
+import { makeStyles } from '@material-ui/styles'
 import CssBaseline from '@material-ui/core/CssBaseline'
 import Grid from '@material-ui/core/Grid'
 import Paper from '@material-ui/core/Paper'
 import Typography from '@material-ui/core/Typography'
 
-const styles = theme => ({
+const useStyles = makeStyles(theme => ({
   root: {
     ...theme.mixins.gutters(),
     minHeight: '100vh',
   },
   header: {
-    paddingTop: theme.spacing.unit * 4,
-    paddingBottom: theme.spacing.unit * 4,
+    paddingTop: theme.spacing(4),
+    paddingBottom: theme.spacing(4),
   },
   content: {
-    padding: theme.spacing.unit * 4,
+    padding: theme.spacing(4),
   },
   footer: {
-    paddingTop: theme.spacing.unit * 4,
-    paddingBottom: theme.spacing.unit * 4,
+    paddingTop: theme.spacing(4),
+    paddingBottom: theme.spacing(4),
     color: theme.palette.text.footer,
   },
   flexColumn: {
@@ -34,10 +34,12 @@ const styles = theme => ({
   },
   link: {
     textDecoration: 'none',
+    color: theme.palette.text.link,
   },
-})
+}))
 
-export default withStyles(styles)(({ classes }) => {
+export default () => {
+  const classes = useStyles()
   const { title } = useSiteData()
   return (
     <Root>
@@ -61,4 +63,4 @@ export default withStyles(styles)(({ classes }) => {
       </Grid>
     </Root>
   )
-})
+}

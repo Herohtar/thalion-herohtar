@@ -5,7 +5,7 @@ import { Link } from 'components/Router'
 import { makeStyles } from '@material-ui/styles'
 import Button from '@material-ui/core/Button'
 import Typography from '@material-ui/core/Typography'
-import Moment from 'react-moment'
+import Luxon from '../components/Luxon'
 import ReactMarkdown from 'react-markdown'
 
 const useStyles = makeStyles(theme => ({
@@ -22,7 +22,7 @@ export default () => {
       <Head title={`${post.title} - ${title}`} />
       <Button component={Link} to="/blog">← Back</Button>
       <Typography variant="h5">{post.title}</Typography>
-      <Typography variant="subtitle1" paragraph><Moment date={post.date} format="dddd, MMMM Do, YYYY" /></Typography>
+      <Typography variant="subtitle1" paragraph><Luxon date={post.date} /></Typography>
       <Typography variant="body2" color="textSecondary" component={ReactMarkdown} source={post.body} />
     </div>
   )

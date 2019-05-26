@@ -3,7 +3,7 @@ import React from 'react'
 import fs from 'fs'
 import path from 'path'
 import glob from 'glob'
-import moment from 'moment'
+import { DateTime } from 'luxon'
 
 import siteConfig from './src/content/SiteConfig.json'
 
@@ -33,20 +33,20 @@ function groupPosts(posts, category) {
 
 function generateCategoryRoutes(posts, categories, previousGroups = []) {
   const formats = [
-    'YYYY',
-    'MMMM YYYY',
-    'MMMM Do, YYYY'
+    { year: 'numeric' },
+    { year: 'numeric', month: 'long' },
+    { year: 'numeric', month: 'long', day: '2-digit' }
   ]
   if (categories.length > 0) {
     return Object.entries(groupPosts(posts, categories[0])).map(([group, groupedPosts]) => {
       const currentGroups = previousGroups.concat(group)
-      const date = moment({year: currentGroups[0], month: (currentGroups[1] - 1) || 0, day: currentGroups[2] || 1})
+      const date = DateTime.local(Number(currentGroups[0]), Number(currentGroups[1] || 1), Number(currentGroups[2] || 1))
 
       return {
         path: `/${group}`,
         template: 'src/pages/blog',
         getData: () => ({
-          header: `Posts from ${date.format(formats[currentGroups.length - 1])}`,
+          header: `Posts from ${date.toLocaleString(formats[currentGroups.length - 1])}`,
           posts: groupedPosts,
         }),
         children: generateCategoryRoutes(groupedPosts, categories.slice(1), currentGroups),

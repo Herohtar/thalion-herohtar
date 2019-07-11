@@ -14,29 +14,29 @@
     "deploy": "firebase deploy"
   },
   "dependencies": {
-    "@material-ui/core": "^4.0.1",
-    "@material-ui/icons": "^4.0.1",
-    "@material-ui/styles": "^4.0.1",
+    "@material-ui/core": "^4.2.0",
+    "@material-ui/icons": "^4.2.1",
+    "@material-ui/styles": "^4.2.0",
     "@reach/router": "^1.2.1",
     "glob": "^7.1.4",
-    "luxon": "^1.15.0",
+    "luxon": "^1.17.0",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
-    "react-markdown": "^4.0.8",
-    "react-static": "^7.0.10",
+    "react-markdown": "^4.1.0",
+    "react-static": "^7.1.0",
     "react-static-plugin-reach-router": "^7.0.10",
     "react-static-plugin-sitemap": "^7.0.10",
-    "react-static-plugin-source-filesystem": "^7.0.10"
+    "react-static-plugin-source-filesystem": "^7.1.0"
   },
   "devDependencies": {
-    "babel-eslint": "^10.0.1",
-    "eslint": "^5.16.0",
+    "babel-eslint": "^10.0.2",
+    "eslint": "^6.0.1",
     "eslint-config-react-app": "^4.0.1",
     "eslint-config-react-tools": "^1.1.7",
-    "eslint-plugin-flowtype": "^3.9.1",
-    "eslint-plugin-import": "^2.17.3",
-    "eslint-plugin-jsx-a11y": "^6.2.1",
-    "eslint-plugin-react": "^7.13.0",
-    "serve": "^11.0.1"
+    "eslint-plugin-flowtype": "^3.11.1",
+    "eslint-plugin-import": "^2.18.0",
+    "eslint-plugin-jsx-a11y": "^6.2.3",
+    "eslint-plugin-react": "^7.14.2",
+    "serve": "^11.1.0"
   }
 }

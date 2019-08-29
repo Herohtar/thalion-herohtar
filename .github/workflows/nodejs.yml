@@ -11,20 +11,25 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v1
+    - name: Checkout Code
+      uses: actions/checkout@v1
+
     - name: Use Node.js 12.x
       uses: actions/setup-node@v1
       with:
         node-version: 12.x
-    - name: npm install and build
+
+    - name: NPM - Install & Build
       run: |
         npm install
         npm run build
       env:
         CI: true
-    - name: GitHub Action for Firebase
+
+    - name: Deploy to Firebase
       uses: w9jds/firebase-action@v1.0.1
       with:
         args: deploy
       env:
         FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
+      if: github.event_name != 'pull_request'

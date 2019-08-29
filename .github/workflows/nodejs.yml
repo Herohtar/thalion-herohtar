@@ -24,4 +24,4 @@ jobs:
         CI: true
     - name: GitHub Action for Firebase
       uses: w9jds/firebase-action@v1.0.1
-      args: deploy
+      arguments: deploy

@@ -58,7 +58,7 @@ export default () => {
           </Grid>
         </Grid>
         <Grid item className={classes.footer} component="footer" xs="auto">
-          <Typography variant="caption" align="center" color="inherit">Powered by Firebase, React Static, and Netlify CMS</Typography>
+          <Typography variant="caption" align="center" color="inherit">Powered by Firebase, React Static, GitHub, and Netlify CMS</Typography>
         </Grid>
       </Grid>
     </Root>

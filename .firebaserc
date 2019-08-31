@@ -1,5 +1,14 @@
 {
   "projects": {
     "default": "thalion-herohtar"
+  },
+  "targets": {
+    "thalion-herohtar": {
+      "hosting": {
+        "herohtar": [
+          "thalion-herohtar"
+        ]
+      }
+    }
   }
 }

@@ -25,7 +25,7 @@ export default () => {
       <Head title={title} />
       <Typography variant="h4" paragraph>Welcome!</Typography>
       <Typography variant="body2" paragraph>This site has nothing on it... yet.</Typography>
-      <Typography variant="body1">Check out the <Link to="/blog">blog</Link>.</Typography>
+      <Typography variant="body1">Check out the <Link to="/blog/">blog</Link>.</Typography>
     </div>
   )
 }

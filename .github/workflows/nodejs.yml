@@ -39,7 +39,7 @@ jobs:
       if: success() && (github.event_name != 'pull_request')
 
     - name: Upload Artifacts
-      uses: actions/upload-artifact@v1
+      uses: actions/upload-artifact@v2.2.0
       with:
         name: dist
         path: dist
